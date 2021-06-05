@@ -7,54 +7,12 @@ namespace Magic_Trixia
     {
         static void Main(string[] args)
         {
-            // itens
-            Item PergaminhoNilo = new Item
-            {
-                Nome = "Pergaminho 1xp",
-                Preco = 20,
-                Categoria = "Pergaminhos",
-                BreveDescricao = "Para realizar discursos na taverna"
-            };
-
-            Item VarinhaDragao = new Item
-            {
-                Nome = "Varinha 3xp",
-                Preco = 120,
-                Categoria = "Varinhas",
-                BreveDescricao = "Capaz de combater inimigos com ate 3000OP de vida"
-            };
-
-            Item GrifoAmazonas = new Item
-            {
-                Nome = "Grifo 10xp",
-                Preco = 500,
-                Categoria = "Animais mágicos",
-                BreveDescricao = "Aumenta o dano de ataque em 10%"
-            };
-
-            Item CapaVoo = new Item
-            {
-                Nome = "Capa 1xp",
-                Preco = 50,
-                Categoria = "Roupas",
-                BreveDescricao = "Aumenta a defesa contra danos em 5%"
-            };
-
-            Item Nimbus3000 = new Item
-            {
-                Nome = "Nimbus 80xp",
-                Preco = 250,
-                Categoria = "Vassouras",
-                BreveDescricao = "Permite danos superiores"
-            };
-
-            Item LivroTransfiguracao = new Item
-            {
-                Nome = "Livro 7xp",
-                Preco = 80,
-                Categoria = "Livros",
-                BreveDescricao = "Permite o combate com bruxas"
-            };
+            Item PergaminhoNilo = new Item("Pergaminho 1xp", 20, "Pergaminhos", "Para realizar discursos na taverna");
+            Item VarinhaDragao = new Item("Varinha 3xp", 120, "Varinhas", "Capaz de combater inimigos com ate 3000OP de vida");
+            Item GrifoAmazonas = new Item("Grifo 10xp", 500, "Animais mágicos", "Aumenta o dano de ataque em 10%");
+            Item CapaVoo = new Item("Capa 1xp", 50, "Roupas", "Aumenta a defesa contra danos em 5%");
+            Item Nimbus3000 = new Item("Nimbus 80xp", 250, "Vassouras", "Permite danos superiores");
+            Item LivroTransfiguracao = new Item("Livro 7xp", 80, "Livros", "Permite o combate com bruxas");
 
             List<Item> Catalogo = new List<Item>
             {
@@ -66,18 +24,10 @@ namespace Magic_Trixia
                 LivroTransfiguracao
             };
 
-            Personagem Mardeus = new Personagem
-            {
-                Nome = "Mardeus Avicena",
-                QuantidadeDeDinheiro = 500,
-                Inventario = new List<Item>()
-            };
-
-
+            Personagem Mardeus = new Personagem("Mardeus Avicena");
 
             Console.WriteLine("**************************************\nBem-vindos ao Magic Trixia\n**************************************");
             
-
             String OpcaoPrincipal = "";
             
             while (OpcaoPrincipal != "0")
@@ -91,11 +41,7 @@ namespace Magic_Trixia
                     Console.WriteLine("Este é o nosso catálogo\n----------------------------------------------------------------------------");
                     foreach (var elemento in Catalogo)
                     {
-                        Console.WriteLine("Nome: {0}", elemento.Nome);
-                        Console.WriteLine("Nome: {0}", elemento.Preco);
-                        Console.WriteLine("Nome: {0}", elemento.Categoria);
-                        Console.WriteLine("Nome: {0}", elemento.BreveDescricao);
-                        Console.WriteLine("----------------------------------------------------------------------------");
+                        elemento.ImprimirItem();
                     }
                     Console.WriteLine("Escreva o nome do item que quer comprar");
                     String Escolha = Console.ReadLine();
@@ -106,11 +52,7 @@ namespace Magic_Trixia
                         if (Escolha == elemento.Nome)
                         {
                             Console.WriteLine("Você escolheu o seguinte item");
-                            Console.WriteLine("Nome: {0}", elemento.Nome);
-                            Console.WriteLine("Nome: {0}", elemento.Preco);
-                            Console.WriteLine("Nome: {0}", elemento.Categoria);
-                            Console.WriteLine("Nome: {0}", elemento.BreveDescricao);
-                            Console.WriteLine("----------------------------------------------------------------------------");
+                            elemento.ImprimirItem();
                             Console.WriteLine("Pretende continuar a compra?\n1 - sim\n2 - não");
                             String ConfirmaCompra = Console.ReadLine();
                             Console.Clear();
@@ -163,18 +105,7 @@ namespace Magic_Trixia
                             Console.Clear();
                         } else if(EscolhaPerfil == "2")
                         {
-                            Console.WriteLine("Seu inventário possui:");
-                            Console.WriteLine("----------------------------------------------------------------------------");
-
-                            foreach (var elemento in Mardeus.Inventario)
-                            {
-                                Console.WriteLine("Nome: {0}", elemento.Nome);
-                                Console.WriteLine("Nome: {0}", elemento.Preco);
-                                Console.WriteLine("Nome: {0}", elemento.Categoria);
-                                Console.WriteLine("Nome: {0}", elemento.BreveDescricao);
-                                Console.WriteLine("----------------------------------------------------------------------------");
-                                
-                            }
+                            Mardeus.ImprimirInventario();
                             Console.WriteLine("Pressione qualquer tecla para voltar ao menu anterior");
                             Console.ReadKey();
                             Console.Clear();
@@ -182,8 +113,6 @@ namespace Magic_Trixia
                         {
                             break;
                         }
-                            
-
                     }
                 }
             }
